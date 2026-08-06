@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/sujalverma/Documents/Code/Projects/TerminalChat/build/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate"
+		},
+		{
+			"file" : "/Users/sujalverma/Documents/Code/Projects/TerminalChat/build/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate.rule"
+		},
+		{
+			"file" : "/Users/sujalverma/Documents/Code/Projects/TerminalChat/build/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate-complete.rule"
+		},
+		{
+			"file" : "/Users/sujalverma/Documents/Code/Projects/TerminalChat/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-build.rule"
+		},
+		{
+			"file" : "/Users/sujalverma/Documents/Code/Projects/TerminalChat/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-configure.rule"
+		},
+		{
+			"file" : "/Users/sujalverma/Documents/Code/Projects/TerminalChat/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-download.rule"
+		},
+		{
+			"file" : "/Users/sujalverma/Documents/Code/Projects/TerminalChat/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-install.rule"
+		},
+		{
+			"file" : "/Users/sujalverma/Documents/Code/Projects/TerminalChat/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-mkdir.rule"
+		},
+		{
+			"file" : "/Users/sujalverma/Documents/Code/Projects/TerminalChat/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-patch.rule"
+		},
+		{
+			"file" : "/Users/sujalverma/Documents/Code/Projects/TerminalChat/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-test.rule"
+		},
+		{
+			"file" : "/Users/sujalverma/Documents/Code/Projects/TerminalChat/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"ftxui-populate"
+		],
+		"name" : "ftxui-populate"
+	}
+}
