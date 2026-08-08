@@ -22,7 +22,7 @@
 
 namespace {
 
-constexpr const char* kServerAddress = "127.0.0.1";
+constexpr const char* kServerAddress = "13.201.133.174";
 constexpr int kServerPort = 8080;
 
 bool sendAll(int fd, const std::string& payload) {
@@ -53,7 +53,7 @@ bool sendPacket(int socket_fd, const Packet& packet) {
 int connectToServer() {
   const int socket_fd = socket(AF_INET, SOCK_STREAM, 0);
   if (socket_fd == -1) {
-    throw std::runtime_error("Failed to create client socket");
+    throw std::runtime_error(std::string("Failed to create client socket: ") + std::strerror(errno));
   }
 
   sockaddr_in server_address{};
@@ -66,7 +66,7 @@ int connectToServer() {
 
   if (connect(socket_fd, reinterpret_cast<sockaddr*>(&server_address), sizeof(server_address)) == -1) {
     close(socket_fd);
-    throw std::runtime_error("Failed to connect to server");
+    throw std::runtime_error(std::string("Failed to connect to server: ") + std::strerror(errno));
   }
 
   return socket_fd;
@@ -153,7 +153,7 @@ int main() {
 
     int current_view = AUTHENTICATION;
     bool authenticated = false;
-    std::string status_message = "Connected to 127.0.0.1:8080";
+    std::string status_message = "Connected to 13.201.133.174:8080";
 
     std::string login_username;
     std::string login_password;

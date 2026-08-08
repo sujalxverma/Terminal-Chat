@@ -492,11 +492,14 @@ void processIncomingData(int clientFd,
 int createListeningSocket() {
   const int listenFd = socket(AF_INET, SOCK_STREAM, 0);
   if (listenFd == -1) {
-    throw std::runtime_error("Failed to create listening socket");
+    throw std::runtime_error(std::string("Failed to create listening socket: ") + std::strerror(errno));
   }
 
   int reuseAddress = 1;
-  setsockopt(listenFd, SOL_SOCKET, SO_REUSEADDR, &reuseAddress, sizeof(reuseAddress));
+  if (setsockopt(listenFd, SOL_SOCKET, SO_REUSEADDR, &reuseAddress, sizeof(reuseAddress)) == -1) {
+    close(listenFd);
+    throw std::runtime_error(std::string("Failed to set SO_REUSEADDR: ") + std::strerror(errno));
+  }
 
   sockaddr_in serverAddress{};
   serverAddress.sin_family = AF_INET;
@@ -505,17 +508,17 @@ int createListeningSocket() {
 
   if (bind(listenFd, reinterpret_cast<sockaddr*>(&serverAddress), sizeof(serverAddress)) == -1) {
     close(listenFd);
-    throw std::runtime_error("Failed to bind listening socket");
+    throw std::runtime_error(std::string("Failed to bind listening socket: ") + std::strerror(errno));
   }
 
   if (!setNonBlocking(listenFd)) {
     close(listenFd);
-    throw std::runtime_error("Failed to set listening socket non-blocking");
+    throw std::runtime_error(std::string("Failed to set listening socket non-blocking: ") + std::strerror(errno));
   }
 
   if (listen(listenFd, SOMAXCONN) == -1) {
     close(listenFd);
-    throw std::runtime_error("Failed to listen on socket");
+    throw std::runtime_error(std::string("Failed to listen on socket: ") + std::strerror(errno));
   }
 
   return listenFd;
