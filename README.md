@@ -156,3 +156,60 @@ The client connects to `127.0.0.1:8080` by default.
 - The project uses a shared JSON packet format between client and server.
 - The database file is stored under `data/chat.db` at runtime.
 - The build output is generated in `build/`.
+
+## Run with Docker
+
+Follow these steps to run the `chat_client` from Docker (macOS users need only Docker Desktop):
+
+1. Install Docker Desktop for macOS: https://www.docker.com/products/docker-desktop
+
+2. Verify Docker is available:
+
+```bash
+docker --version
+```
+
+3. (Local test) Build a local image named `terminal-chat-client`:
+
+```bash
+docker build -t terminal-chat-client .
+```
+
+4. Run the client locally (interactive TTY):
+
+```bash
+docker run -it --rm terminal-chat-client
+```
+
+The container will start the `chat_client` executable and automatically connect to the public AWS server at `13.201.133.174:8080`.
+
+5. To publish a multi-platform image to Docker Hub under your account `svrma` (create a buildx builder first if you don't have one):
+
+```bash
+docker buildx create --name terminalchat-builder --use
+
+docker buildx build \
+	--platform linux/amd64,linux/arm64 \
+	-t svrma/terminal-chat:latest \
+	-t svrma/terminal-chat:v1.0.0 \
+	--push .
+```
+
+Before pushing, login to Docker Hub:
+
+```bash
+docker login
+```
+
+6. A macOS user can then run the client with a single command after pulling the image:
+
+```bash
+docker pull svrma/terminal-chat:latest
+docker run -it --rm svrma/terminal-chat:latest
+```
+
+Notes:
+- The client is preconfigured to connect to `13.201.133.174:8080` by default.
+- No C++ compiler, CMake, Git, or source code is required on the user's machine.
+- To exit the client UI, press Ctrl+K (the client listens for a special Exit event). You may also stop the container with Ctrl+C from the host.
+
